@@ -6,20 +6,24 @@ export const CarouselHolder = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   /* width */
   ::-webkit-scrollbar {
     height: 10px;
+    width: 90%;
   }
   /* Track */
   ::-webkit-scrollbar-track {
     background: #f1f1f1;
+    border-radius: 20px;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #888;
+    width: 20%;
+    border-radius: 20px;
   }
 
   /* Handle on hover */
