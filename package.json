@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.1.2",
     "classnames": "^2.2.6",
     "emotion": "^10.0.23",
+    "firebase": "^7.8.1",
     "immer": "^5.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
