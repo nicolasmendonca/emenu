@@ -19,10 +19,6 @@ export const ListItemContainer = styled.li`
   &:hover {
     background-color: ${styleConstants.primaryColor};
   }
-
-  &:first-of-type {
-    border-top: 1px solid black;
-  }
 `;
 
 export const ListItemMainText = styled.p`
