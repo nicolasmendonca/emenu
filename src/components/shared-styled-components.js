@@ -9,4 +9,9 @@ export const LoaderContainer = styled.div`
 
 export const ListItemContainer = styled.div`
   border-top: 1px solid black;
+
+  a {
+    text-decoration: none;
+    color: initial;
+  }
 `;
