@@ -17,6 +17,7 @@ import ListItem from '../../components/ListItem/ListItem';
 import {
   ListItemContainer,
   LoaderContainer,
+  Title,
 } from '../../components/shared-styled-components';
 import { hasLoaded, isIdle } from '../../redux/utils/selectors';
 
@@ -57,7 +58,7 @@ function PlaceHomePage({ placeSlug }) {
 
   return (
     <>
-      <h1>{placeData.name}</h1>
+      <Title>{placeData.name}</Title>
       <ListItemContainer>
         {placeCategories.map(category => (
           <ListItem

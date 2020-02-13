@@ -11,6 +11,7 @@ export const ListItemContainer = styled.li`
   list-style-type: none;
   padding: 0 4em 0 2em;
   cursor: pointer;
+  box-sizing: border-box;
   border-bottom: 1px solid black;
   transition: all 0.2s ease-in-out;
   position: relative;

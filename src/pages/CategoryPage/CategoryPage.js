@@ -2,29 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import SyncLoader from 'react-spinners/SyncLoader';
-import ListItem from '../components/ListItem/ListItem';
-import { fetchProducts } from '../redux/actions/products';
-import { fetchPlaceData, fetchPlaceCategories } from '../redux/actions/places';
+import { fetchProducts } from '../../redux/actions/products';
 import {
-  getPlaceData,
+  fetchPlaceData,
+  fetchPlaceCategories,
+} from '../../redux/actions/places';
+import {
   getPlaceDataAsyncState,
   getPlaceCategoriesAsyncState,
   getActiveCategory,
-} from '../redux/selectors/places';
+} from '../../redux/selectors/places';
 import {
   getProducts,
   getProductsAsyncState,
-} from '../redux/selectors/products';
+} from '../../redux/selectors/products';
 import {
   LoaderContainer,
-  ListItemContainer,
-} from '../components/shared-styled-components';
-import { styleConstants } from '../utils/styleConstants';
-import { isIdle, hasLoaded } from '../redux/utils/selectors';
+  Title,
+} from '../../components/shared-styled-components';
+import { styleConstants } from '../../utils/styleConstants';
+import { isIdle, hasLoaded } from '../../redux/utils/selectors';
+import ProductCard, {
+  ProductCardsContainer,
+} from '../../components/ProductCard/ProductCard';
 
 function CategoryPage({ placeSlug, categorySlug }) {
   const dispatch = useDispatch();
-  const placeData = useSelector(getPlaceData);
   const placeDataAsyncState = useSelector(getPlaceDataAsyncState);
   const placeCategoriesAsyncState = useSelector(getPlaceCategoriesAsyncState);
   const productsAsyncState = useSelector(getProductsAsyncState);
@@ -49,9 +52,9 @@ function CategoryPage({ placeSlug, categorySlug }) {
   }, [categorySlug, dispatch, placeSlug]);
 
   if (
+    !hasLoaded(productsAsyncState) ||
     !hasLoaded(placeDataAsyncState) ||
-    !hasLoaded(placeCategoriesAsyncState) ||
-    !hasLoaded(productsAsyncState)
+    !hasLoaded(placeCategoriesAsyncState)
   ) {
     return (
       <LoaderContainer>
@@ -67,17 +70,18 @@ function CategoryPage({ placeSlug, categorySlug }) {
 
   return (
     <>
-      <h1>{activeCategory.name}</h1>
-      <ListItemContainer>
+      <Title>{activeCategory.name}</Title>
+      <ProductCardsContainer>
         {products.map(product => (
-          <ListItem
+          <ProductCard
             key={product.id}
-            mainText={product.name}
-            imageUrl={product.image}
-            linkTo={`/${placeData.slug}`}
+            name={product.name}
+            image={product.image}
+            description={product.description}
+            price={product.price}
           />
         ))}
-      </ListItemContainer>
+      </ProductCardsContainer>
     </>
   );
 }

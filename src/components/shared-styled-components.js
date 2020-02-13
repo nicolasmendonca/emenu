@@ -15,3 +15,7 @@ export const ListItemContainer = styled.div`
     color: initial;
   }
 `;
+
+export const Title = styled.h1`
+  margin: 1em;
+`;
