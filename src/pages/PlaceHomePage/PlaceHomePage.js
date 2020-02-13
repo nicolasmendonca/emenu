@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import SyncLoader from 'react-spinners/SyncLoader';
@@ -8,33 +7,49 @@ import {
   fetchPlaceCategories,
 } from '../../redux/actions/places';
 import {
-  getPlaceIsLoading,
   getPlaceData,
-  getPlaceCategoriesIsLoading,
   getPlaceCategories,
+  getPlaceDataAsyncState,
+  getPlaceCategoriesAsyncState,
 } from '../../redux/selectors/places';
 import { styleConstants } from '../../utils/styleConstants';
 import ListItem from '../../components/ListItem/ListItem';
+import {
+  ListItemContainer,
+  LoaderContainer,
+} from '../../components/shared-styled-components';
+import { hasLoaded, isIdle } from '../../redux/utils/selectors';
 
 function PlaceHomePage({ placeSlug }) {
   const dispatch = useDispatch();
   const placeData = useSelector(getPlaceData);
-  const isLoadingPlaceData = useSelector(getPlaceIsLoading);
+  const placeDataAsyncState = useSelector(getPlaceDataAsyncState);
   const placeCategories = useSelector(getPlaceCategories);
-  const isLoadingPlaceCategories = useSelector(getPlaceCategoriesIsLoading);
-  React.useEffect(() => {
-    dispatch(fetchPlaceData(placeSlug));
-    dispatch(fetchPlaceCategories(placeSlug));
-  }, [placeSlug, dispatch]);
+  const placeCategoriesAsyncState = useSelector(getPlaceCategoriesAsyncState);
 
-  if (isLoadingPlaceData || isLoadingPlaceCategories) {
+  React.useEffect(() => {
+    if (isIdle(placeCategoriesAsyncState)) {
+      dispatch(fetchPlaceCategories(placeSlug));
+    }
+  });
+
+  React.useEffect(() => {
+    if (isIdle(placeDataAsyncState)) {
+      dispatch(fetchPlaceData(placeSlug));
+    }
+  });
+
+  if (
+    !hasLoaded(placeDataAsyncState) ||
+    !hasLoaded(placeCategoriesAsyncState)
+  ) {
     return (
       <LoaderContainer>
         <SyncLoader
           size={15}
           margin={5}
           color={styleConstants.primaryColor}
-          loading={isLoadingPlaceData}
+          loading
         />
       </LoaderContainer>
     );
@@ -48,7 +63,7 @@ function PlaceHomePage({ placeSlug }) {
           <ListItem
             key={category.id}
             mainText={category.name}
-            linkTo={`/${placeSlug}/${category.id}`}
+            linkTo={`/${placeSlug}/${category.slug}`}
           />
         ))}
       </ListItemContainer>
@@ -63,16 +78,5 @@ PlaceHomePage.propTypes = {
 PlaceHomePage.defaultProps = {
   placeSlug: '',
 };
-
-const LoaderContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-`;
-
-const ListItemContainer = styled.div`
-  border-top: 1px solid black;
-`;
 
 export default PlaceHomePage;

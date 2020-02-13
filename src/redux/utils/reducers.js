@@ -26,3 +26,18 @@ export const createAsyncReducer = actionName => (
       return state;
   }
 };
+
+export const createFetchResourceReducer = (actionName, initialState = null) => (
+  state = initialState,
+  action
+) => {
+  switch (action.type) {
+    case generateSuccessfulAsyncActionType(actionName):
+      return action.payload;
+    case generateBeginAsyncActionType(actionName):
+    case generateFailedAsyncActionType(actionName):
+      return initialState;
+    default:
+      return state;
+  }
+};
