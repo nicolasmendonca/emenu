@@ -6,6 +6,7 @@ import CategoryPage from '../pages/CategoryPage';
 import PlaceHomePage from '../pages/PlaceHomePage';
 import ThemeProvider from './ThemeProvider';
 import { ResetCSS } from '../GenericStyles';
+import LoginPage from '../pages/LoginPage/LoginPage';
 
 function App() {
   return (
@@ -13,10 +14,12 @@ function App() {
       <ThemeProvider>
         <ResetCSS />
         <Router>
+          <LoginPage path="/login" />
           <PlaceHomePage path="/:placeSlug" />
           <CategoryPage path="/:placeSlug/:categorySlug" />
         </Router>
       </ThemeProvider>
+      <Router>
     </Provider>
   );
 }
