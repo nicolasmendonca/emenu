@@ -19,7 +19,6 @@ function App() {
           <CategoryPage path="/:placeSlug/:categorySlug" />
         </Router>
       </ThemeProvider>
-      <Router>
     </Provider>
   );
 }
