@@ -20,6 +20,7 @@ import {
   Title,
 } from '../../components/shared-styled-components';
 import { hasLoaded, isIdle } from '../../redux/utils/selectors';
+import { PageWrapper } from './Styles';
 
 function PlaceHomePage({ placeSlug }) {
   const dispatch = useDispatch();
@@ -57,7 +58,7 @@ function PlaceHomePage({ placeSlug }) {
   }
 
   return (
-    <>
+    <PageWrapper>
       <Title>{placeData.name}</Title>
       <ListItemContainer>
         {placeCategories.map(category => (
@@ -68,7 +69,7 @@ function PlaceHomePage({ placeSlug }) {
           />
         ))}
       </ListItemContainer>
-    </>
+    </PageWrapper>
   );
 }
 

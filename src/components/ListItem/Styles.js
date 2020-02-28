@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { styleConstants } from '../../utils/styleConstants';
 
 export const ListItemContainer = styled.li`
   min-height: 80px;
@@ -18,12 +17,12 @@ export const ListItemContainer = styled.li`
   user-select: none;
 
   &:hover {
-    background-color: ${styleConstants.primaryColor};
+    background-color: ${props => props.theme.primaryColor};
   }
 `;
 
 export const ListItemMainText = styled.p`
-  font-size: 1.2;
+  font-size: 1.2em;
   font-family: 'Nunito';
 `;
 

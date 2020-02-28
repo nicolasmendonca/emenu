@@ -17,5 +17,10 @@ export const ListItemContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  margin: 1em;
+  background-color: ${props => props.theme.mainTitleBg};
+  font-size: 1.4em;
+  font-family: 'Nunito';
+  padding: 1em;
+  margin: 0;
+  font-weight: bold;
 `;
