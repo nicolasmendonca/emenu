@@ -1,7 +1,12 @@
 const primaryTheme = {
-  primaryColor: 'white',
+  primaryColor: '#bf25ff',
+  secondaryColor: '#00ffe7',
+  lighterBgColor: 'white',
   mainTitleBg: 'lightgray',
   mainTitleColor: 'black',
+  shadowColor: '#00000042',
+  mainBgColor: '#f3f3f3',
+  bodyBgColor: '#f1f1f1',
 };
 
 // const secondaryTheme = {

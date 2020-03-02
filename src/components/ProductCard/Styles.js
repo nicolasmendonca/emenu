@@ -14,7 +14,7 @@ export const ProductCardColumn = styled.div`
   text-align: initial;
   margin: 1em;
   box-shadow: 1px 6px 11px 0px #c7c7c7;
-  background-color: #f7f7f7;
+  background-color: white;
   animation: 0.2s ease-in-out;
   transition: all 0.15s ease-in-out;
   cursor: pointer;

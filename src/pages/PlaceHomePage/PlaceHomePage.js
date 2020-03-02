@@ -12,19 +12,20 @@ import {
   getPlaceDataAsyncState,
   getPlaceCategoriesAsyncState,
 } from '../../redux/selectors/places';
-import { styleConstants } from '../../utils/styleConstants';
+import { getActiveTheme } from '../../redux/selectors/themes';
 import ListItem from '../../components/ListItem/ListItem';
 import {
   ListItemContainer,
   LoaderContainer,
-  Title,
 } from '../../components/shared-styled-components';
 import { hasLoaded, isIdle } from '../../redux/utils/selectors';
-import { PageWrapper } from './Styles';
+import { PageWrapper, Title } from './Styles';
+import { NavContainer } from '../../components/Nav/Styles';
 
 function PlaceHomePage({ placeSlug }) {
   const dispatch = useDispatch();
   const placeData = useSelector(getPlaceData);
+  const theme = useSelector(getActiveTheme);
   const placeDataAsyncState = useSelector(getPlaceDataAsyncState);
   const placeCategories = useSelector(getPlaceCategories);
   const placeCategoriesAsyncState = useSelector(getPlaceCategoriesAsyncState);
@@ -47,19 +48,16 @@ function PlaceHomePage({ placeSlug }) {
   ) {
     return (
       <LoaderContainer>
-        <SyncLoader
-          size={15}
-          margin={5}
-          color={styleConstants.primaryColor}
-          loading
-        />
+        <SyncLoader size={15} margin={5} color={theme.primaryColor} loading />
       </LoaderContainer>
     );
   }
 
   return (
     <PageWrapper>
-      <Title>{placeData.name}</Title>
+      <NavContainer>
+        <Title>{placeData.name}</Title>
+      </NavContainer>
       <ListItemContainer>
         {placeCategories.map(category => (
           <ListItem

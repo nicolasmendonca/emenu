@@ -16,18 +16,18 @@ import {
   getProducts,
   getProductsAsyncState,
 } from '../../redux/selectors/products';
-import {
-  LoaderContainer,
-  Title,
-} from '../../components/shared-styled-components';
-import { styleConstants } from '../../utils/styleConstants';
+import { LoaderContainer } from '../../components/shared-styled-components';
+import { Title } from '../PlaceHomePage/Styles';
 import { isIdle, hasLoaded } from '../../redux/utils/selectors';
 import ProductCard, {
   ProductCardsContainer,
 } from '../../components/ProductCard/ProductCard';
+import { getActiveTheme } from '../../redux/selectors/themes';
+import { NavContainer } from '../../components/Nav/Styles';
 
 function CategoryPage({ placeSlug, categorySlug }) {
   const dispatch = useDispatch();
+  const theme = useSelector(getActiveTheme);
   const placeDataAsyncState = useSelector(getPlaceDataAsyncState);
   const placeCategoriesAsyncState = useSelector(getPlaceCategoriesAsyncState);
   const productsAsyncState = useSelector(getProductsAsyncState);
@@ -58,19 +58,16 @@ function CategoryPage({ placeSlug, categorySlug }) {
   ) {
     return (
       <LoaderContainer>
-        <SyncLoader
-          size={15}
-          margin={5}
-          color={styleConstants.primaryColor}
-          loading
-        />
+        <SyncLoader size={15} margin={5} color={theme.primaryColor} loading />
       </LoaderContainer>
     );
   }
 
   return (
     <>
-      <Title>{activeCategory.name}</Title>
+      <NavContainer>
+        <Title>{activeCategory.name}</Title>
+      </NavContainer>
       <ProductCardsContainer>
         {products.map(product => (
           <ProductCard

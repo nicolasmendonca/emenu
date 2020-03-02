@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
+// This also needs to be included in .storybook/preview-head.html
 export const ResetCSS = createGlobalStyle`
 
 html, body, div, span, applet, object, iframe,
@@ -33,7 +34,8 @@ footer, header, hgroup, menu, nav, section {
 }
 
 body {
-	line-height: 1;
+    line-height: 1;
+    background-color: ${props => props.theme.bodyBgColor};
 }
 
 ol, ul {

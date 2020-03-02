@@ -17,7 +17,7 @@ export const ListItemContainer = styled.li`
   user-select: none;
 
   &:hover {
-    background-color: ${props => props.theme.primaryColor};
+    background-color: ${props => props.theme.lighterBgColor};
   }
 `;
 
