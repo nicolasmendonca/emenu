@@ -6,7 +6,28 @@
     <link rel="stylesheet" href="dist/style.css" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <header class="Header">
+      <div class="Header__image"></div>
+      <h1 class="Header__title">El Taller</h1>
+    </header>
+  </body>
+  <script>
+    var headerImageEl = null;
 
-  <script src="./dist/bundle.js"></script>
+    function onScroll() {
+      var scrollPercentage = window.scrollY / window.innerWidth;
+      headerImageEl.style.filter =
+        "blur(" + Math.ceil(scrollPercentage * 4) + "px)";
+      headerImageEl.style["background-size"] =
+        100 + 100 * scrollPercentage * 0.5 + "vw";
+    }
+
+    function onLoadEnd() {
+      headerImageEl = document.querySelector(".Header__image");
+      window.addEventListener("scroll", onScroll);
+    }
+
+    document.addEventListener("DOMContentLoaded", onLoadEnd);
+  </script>
 </html>

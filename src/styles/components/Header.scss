@@ -1,0 +1,33 @@
+.Header {
+  width: 100vw;
+  background-color: var(--color-grey-light-1);
+  height: 80vw;
+  position: relative;
+  overflow: hidden;
+
+  &__image {
+    filter: blur(0);
+    background-image: linear-gradient(
+        to bottom right,
+        rgba(255, 144, 8, 0.3),
+        rgba(255, 0, 236, 0.3)
+      ),
+      url("../images/ElTaller.jpeg");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    height: 100%;
+    width: 100%;
+    transition: filter 0.2s ease-out, background-size 0.2s ease-out;
+  }
+
+  &__title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 2.4rem;
+    color: white;
+    font-size: 3.6rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+}
