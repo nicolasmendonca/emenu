@@ -10,6 +10,7 @@
 
 # production
 /build
+markup/dist
 
 # misc
 .DS_Store
