@@ -51,7 +51,7 @@ const Header: React.FC<IHeaderProps> = ({ backgroundImageUrl, title }) => {
           ...styles
         }}
       />
-      <h1>{title}</h1>
+      <h1 className="Header__title">{title}</h1>
     </header>
   );
 };
