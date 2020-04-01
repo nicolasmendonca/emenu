@@ -31,6 +31,17 @@ const Header: React.FC<IHeaderProps> = ({ backgroundImageUrl, title }) => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const headerStyles = {
+    backgroundImage: `linear-gradient(
+        to bottom right,
+        rgba(0, 0, 0, 0.2),
+        rgba(255, 176, 2, 0.2)
+      ),
+      url('${backgroundImageUrl}')`,
+    ...styles
+  };
+
   return (
     <header
       ref={headerRef}
@@ -39,18 +50,7 @@ const Header: React.FC<IHeaderProps> = ({ backgroundImageUrl, title }) => {
         filter: "1px"
       }}
     >
-      <div
-        className="Header__image"
-        style={{
-          backgroundImage: `linear-gradient(
-          to bottom right,
-          rgba(0, 0, 0, 0.2),
-          rgba(255, 176, 2, 0.2)
-        ),
-        url('${backgroundImageUrl}')`,
-          ...styles
-        }}
-      />
+      <div className="Header__image" style={headerStyles} />
       <h1 className="Header__title">{title}</h1>
     </header>
   );
